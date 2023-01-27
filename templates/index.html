@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Students</title>
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    </head>
+
+    <body class="container-fluid">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/school/">MySchool</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/school/students/">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/school/teachers/">Teachers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/school/courses/">Courses</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="/school/logout/" class="btn btn-outline-danger">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <br> <br>
+
+        <div class="container text-center">
+            <h1>School Management Syatem</h1>
+        </div>
+
+
+        {% if messages %}
+        {% for message in messages %}
+        <div role="alert" class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <br>
+
+        <section class="bg-white">
+            <div class="container py-5">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <div class="col">
+                        <a href="/school/students/">
+                            <div class="card shadow text-light h-100">
+                                <img src="{% static 'assets/img/students.jpg' %}" class="card-img h-100 w-100"
+                                    alt="...">
+                                <div class="card-img-overlay">
+                                    <h5 class="card-title">Students</h5>
+                                    <p class="card-text">
+                                        Manage students here!
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="/school/teachers/">
+                            <div class="card shadow text-light text-center h-100">
+                                <img src="{% static 'assets/img/teachers.jpg' %}" class="card-img h-100 w-100"
+                                    alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-center">
+                                    <h5 class="card-title">Teachers</h5>
+                                    <p class="card-text">
+                                        Manage teachers here!
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="/school/courses/">
+                            <div class="card shadow text-light text-right h-100">
+                                <img src="{% static 'assets/img/courses.jpg' %}" class="card-img h-100 w-100" alt="...">
+                                <div class="card-img-overlay d-flex flex-column justify-content-end">
+                                    <h5 class="card-title">Courses</h5>
+                                    <p class="card-text">Manage courses here!</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+
+</html>

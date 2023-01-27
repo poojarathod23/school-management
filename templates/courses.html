@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="container-fluid">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/school/">MySchool</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/school/students/">Students</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/school/teachers/">Teachers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/school/courses/">Courses</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <a href="/school/logout/" class="btn btn-outline-danger">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <br>
+
+    <div class="container text-center">
+      <h1>Courses</h1>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div role="alert" class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-10">
+        <h4 class="display-7">All Courses</h4>
+      </div>
+      <div class="col-md-2">
+        <a class="btn btn-outline-success" href="{% url 'school:add_course' %}"> <svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+            <path
+              d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+            <path fill-rule="evenodd"
+              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+          </svg> Add Course</a>
+      </div>
+    </div>
+
+    <br>
+    {% if courses %}
+    <table class='table table-bordered text-center'>
+      <tr>
+        <th>ID</th>
+        <th>Course Name</th>
+        <th>Department</th>
+        <th>Budget</th>
+        <th>Actions</th>
+      </tr>
+
+      {% for course in courses %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ course.course_name }}</td>
+        <td>{{ course.dept }}</td>
+        <td>{{ course.budget }}</td>
+        <td>
+          <a href="{% url 'school:edit_course' cid=course.id %}" class="link-success">
+            <!-- svg image for edit -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+              <path fill-rule="evenodd"
+                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+            </svg>
+          </a> &emsp;
+          <a href="{% url 'school:delete_course' cid=course.id %}" class="link-danger">
+            <!-- svg image for delete -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+              viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+              <path fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+
+      {% endif %}
+
+      <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+  </body>
+
+</html>

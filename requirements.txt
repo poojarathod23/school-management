@@ -1,0 +1,4 @@
+django
+whitenoise
+python-dotenv
+mssql-django

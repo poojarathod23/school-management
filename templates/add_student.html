@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Students</title>
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    </head>
+
+    <body class="container-fluid">
+
+        <br>
+
+        <div class="container text-center">
+            <h1>Add Student</h1>
+        </div>
+
+        <div class="container">
+
+            {% if messages %}
+            {% for message in messages %}
+            <div role="alert" class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <br>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="student_name" class="form-label">Student Name</label>
+                    <input type="text" class="form-control" id="student_name" name="student_name" placeholder=""
+                        required />
+                </div>
+                <div class="mb-3">
+                    <label for="course" class="form-label">Course Name</label>
+                    <input type="text" class="form-control" name="course" id="course" placeholder="" required />
+                </div>
+                <div class="mb-3">
+                    <label for="fees" class="form-label">Fees</label>
+                    <input type="text" class="form-control" name="fees" id="fees" placeholder="" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+                <a href="/school/students/" class="btn btn-danger">Cancel</a>
+            </form>
+        </div>
+
+        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+
+</html>
